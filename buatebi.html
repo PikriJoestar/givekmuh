@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffe5ef" />
+    <title>Maafin aku, ya? 💗</title>
+    <link rel="stylesheet" href="buatebi.css" />
+  </head>
+  <body>
+    <div class="background-hearts" aria-hidden="true">
+      <span>♡</span><span>♥</span><span>♡</span><span>♥</span><span>♡</span>
+      <span>♥</span><span>♡</span><span>♥</span>
+    </div>
+
+    <main class="card">
+      <div class="sparkle sparkle-one" aria-hidden="true">✦</div>
+      <div class="sparkle sparkle-two" aria-hidden="true">✧</div>
+
+      <div class="photo-frame">
+        <img id="photo" src="foto.jpg" class="photo" alt="Foto kita berdua" />
+        <span class="photo-heart" aria-hidden="true">💕</span>
+      </div>
+
+      <label class="photo-picker" for="photo-upload">
+        <span aria-hidden="true">📷</span> Ganti foto kita
+      </label>
+      <input
+        id="photo-upload"
+        class="photo-upload"
+        type="file"
+        accept="image/*"
+      />
+      <p
+        id="photo-message"
+        class="photo-message"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <span class="eyebrow">surat kecil untuk kamu</span>
+      <h1>Hai, Ebindaah <span aria-hidden="true">💗</span></h1>
+
+      <div class="divider" aria-hidden="true"><span>♥</span></div>
+
+      <p class="message">
+        Aku mau minta maaf yaa... 🥺<br />
+        Dari sekian banyak orang yang aku kenal, kamu tetap jadi seseorang yang
+        paling spesial. Maaf ya kalau aku sempat ghosting kamu (katanyaa!!). Aku
+        nggak bermaksud bikin kamu sedih. 💌
+      </p>
+
+      <h2>Kamu maafin aku, kan? 🥹</h2>
+      <p class="little-note">pilih yang manis yaa hihi</p>
+
+      <div class="buttons">
+        <button id="yes" type="button">Iyaa, aku maafin 💕</button>
+        <button id="no" type="button" aria-label="Gamau, tombol ini suka kabur">
+          Gamau 😝
+        </button>
+      </div>
+
+      <p id="result" role="status" aria-live="polite">
+        YEAYYY! Makasih udah maafin aku 🥰<br />
+        Aku sayang kamu banyak-banyak! 💖
+      </p>
+      <div class="signature">dibuat pakai banyak cinta <span>♡</span></div>
+    </main>
+
+    <script>
+      const yesButton = document.getElementById("yes");
+      const noButton = document.getElementById("no");
+      const result = document.getElementById("result");
+      const photoUpload = document.getElementById("photo-upload");
+      const photo = document.getElementById("photo");
+      const photoMessage = document.getElementById("photo-message");
+      let currentPhotoUrl;
+
+      yesButton.addEventListener("click", () => {
+        result.classList.add("visible");
+        yesButton.textContent = "Makasih yaahh  ! 💖";
+        yesButton.disabled = true;
+        celebrate();
+      });
+
+      function moveButton() {
+        const padding = 12;
+        const maxX = Math.max(
+          padding,
+          window.innerWidth - noButton.offsetWidth - padding,
+        );
+        const maxY = Math.max(
+          padding,
+          window.innerHeight - noButton.offsetHeight - padding,
+        );
+
+        noButton.classList.add("running");
+        noButton.style.left = `${padding + Math.random() * (maxX - padding)}px`;
+        noButton.style.top = `${padding + Math.random() * (maxY - padding)}px`;
+      }
+
+      noButton.addEventListener("pointerenter", moveButton);
+      noButton.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        moveButton();
+      });
+      noButton.addEventListener("click", moveButton);
+
+      photoUpload.addEventListener("change", () => {
+        const file = photoUpload.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith("image/")) {
+          photoMessage.textContent = "Pilih file gambar, ya 💗";
+          photoUpload.value = "";
+          return;
+        }
+
+        if (currentPhotoUrl) URL.revokeObjectURL(currentPhotoUrl);
+        currentPhotoUrl = URL.createObjectURL(file);
+        photo.src = currentPhotoUrl;
+        photoMessage.textContent = "";
+      });
+
+      function celebrate() {
+        const emojis = ["💖", "💕", "💗", "💘", "💝"];
+        for (let i = 0; i < 32; i++) {
+          const heart = document.createElement("span");
+          heart.className = "heart";
+          heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          heart.style.left = `${Math.random() * 100}vw`;
+          heart.style.setProperty(
+            "--drift",
+            `${(Math.random() - 0.5) * 140}px`,
+          );
+          heart.style.animationDuration = `${3 + Math.random() * 2}s`;
+          heart.style.animationDelay = `${Math.random() * 0.8}s`;
+          document.body.appendChild(heart);
+          heart.addEventListener("animationend", () => heart.remove(), {
+            once: true,
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,459 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap");
+
+:root {
+  color-scheme: light;
+  font-family: "Nunito", "DM Sans", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --pink: #ed6594;
+  --pink-dark: #db4e80;
+  --pink-light: #fff0f5;
+  --ink: #684653;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 32px 16px;
+  background:
+    radial-gradient(ellipse at 10% 12%, #fff8fb 0, transparent 36%),
+    radial-gradient(ellipse at 88% 86%, #ffc3d8 0, transparent 34%),
+    linear-gradient(145deg, #ffeaf2 0%, #ffd8e7 48%, #ffe9f1 100%);
+  color: var(--ink);
+}
+
+.background-hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.background-hearts span {
+  position: absolute;
+  bottom: -60px;
+  color: #ed77a0;
+  opacity: 0.27;
+  animation: float-up 12s linear infinite;
+}
+
+.background-hearts span:nth-child(1) {
+  left: 7%;
+  font-size: 40px;
+  animation-delay: 0s;
+}
+
+.background-hearts span:nth-child(2) {
+  left: 19%;
+  font-size: 22px;
+  animation-delay: 5s;
+}
+
+.background-hearts span:nth-child(3) {
+  left: 74%;
+  font-size: 34px;
+  animation-delay: 2s;
+}
+
+.background-hearts span:nth-child(4) {
+  left: 89%;
+  font-size: 26px;
+  animation-delay: 7s;
+}
+
+.background-hearts span:nth-child(5) {
+  left: 43%;
+  font-size: 21px;
+  animation-delay: 4s;
+}
+
+.background-hearts span:nth-child(6) {
+  left: 59%;
+  font-size: 38px;
+  animation-delay: 9s;
+}
+
+.background-hearts span:nth-child(7) {
+  left: 30%;
+  font-size: 29px;
+  animation-delay: 8s;
+}
+
+.background-hearts span:nth-child(8) {
+  left: 96%;
+  font-size: 20px;
+  animation-delay: 3s;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 470px);
+  padding: 34px 34px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.91);
+  box-shadow: 0 24px 70px rgba(185, 82, 122, 0.2), 0 5px 16px rgba(185, 82, 122, 0.08);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  animation: card-in 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.sparkle {
+  position: absolute;
+  color: #f2a1bd;
+  animation: twinkle 2s ease-in-out infinite alternate;
+}
+
+.sparkle-one {
+  top: 36px;
+  left: 34px;
+  font-size: 24px;
+}
+
+.sparkle-two {
+  top: 76px;
+  right: 34px;
+  font-size: 28px;
+  animation-delay: 700ms;
+}
+
+.photo-frame {
+  position: relative;
+  width: 156px;
+  height: 156px;
+  margin: 0 auto 9px;
+  padding: 6px;
+  border: 2px dashed #f3a5bf;
+  border-radius: 50%;
+  background: #fff5f8;
+  box-shadow: 0 8px 22px rgba(237, 101, 148, 0.16);
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 4px solid white;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.photo-heart {
+  position: absolute;
+  right: -7px;
+  bottom: 3px;
+  display: grid;
+  width: 39px;
+  height: 39px;
+  place-items: center;
+  border: 3px solid white;
+  border-radius: 50%;
+  background: #ffedf3;
+  font-size: 19px;
+}
+
+.photo-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff1f6;
+  color: var(--pink-dark);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.photo-picker:hover {
+  transform: translateY(-1px);
+  background: #ffe4ee;
+}
+
+.photo-picker:focus-within,
+.photo-picker:has(+ .photo-upload:focus-visible) {
+  outline: 3px solid #f5a2bd;
+  outline-offset: 3px;
+}
+
+.photo-upload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.photo-message {
+  min-height: 0;
+  margin: 2px 0 0;
+  color: var(--pink-dark);
+  font-size: 12px;
+}
+
+.eyebrow {
+  display: block;
+  margin: 17px 0 3px;
+  color: #c27b93;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: #d95783;
+  font-size: clamp(27px, 7vw, 34px);
+  font-weight: 900;
+  letter-spacing: -0.7px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 150px;
+  margin: 12px auto 15px;
+  color: #ee8bab;
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  height: 1px;
+  flex: 1;
+  background: #f6d3df;
+  content: "";
+}
+
+.message {
+  margin: 0 auto 22px;
+  color: #80636e;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+h2 {
+  margin: 0;
+  color: #c94d79;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.little-note {
+  margin: 4px 0 16px;
+  color: #b18d9b;
+  font-size: 12px;
+}
+
+.buttons {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+button:focus-visible,
+.photo-picker:focus-visible {
+  outline: 3px solid #d95783;
+  outline-offset: 4px;
+}
+
+#yes {
+  padding: 13px 20px;
+  background: linear-gradient(135deg, #f27ca3, #e75b8b);
+  box-shadow: 0 6px 14px rgba(231, 91, 139, 0.28);
+  color: white;
+}
+
+#yes:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 9px 18px rgba(231, 91, 139, 0.35);
+}
+
+#yes:disabled {
+  cursor: default;
+}
+
+#no {
+  padding: 11px 16px;
+  border: 1px solid #f2d9e2;
+  background: #fff8fa;
+  color: #9f7585;
+}
+
+#no.running {
+  position: fixed;
+  z-index: 5;
+  box-shadow: 0 8px 24px rgba(185, 82, 122, 0.2);
+}
+
+#result {
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+  color: #df5684;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: max-height 500ms ease, opacity 350ms ease, transform 350ms ease, margin 350ms ease;
+}
+
+#result.visible {
+  max-height: 110px;
+  margin-top: 19px;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.signature {
+  margin-top: 21px;
+  padding-top: 15px;
+  border-top: 1px solid #f7e5eb;
+  color: #bd94a2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.signature span {
+  color: #e8799f;
+  font-size: 14px;
+}
+
+.heart {
+  position: fixed;
+  z-index: 10;
+  bottom: -36px;
+  pointer-events: none;
+  animation: celebrate 4s ease-in forwards;
+  font-size: 25px;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.27;
+  }
+
+  88% {
+    opacity: 0.27;
+  }
+
+  100% {
+    transform: translateY(-115vh) rotate(24deg);
+    opacity: 0;
+  }
+}
+
+@keyframes card-in {
+  from {
+    transform: translateY(16px) scale(0.97);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  from {
+    transform: scale(0.8) rotate(-12deg);
+    opacity: 0.55;
+  }
+
+  to {
+    transform: scale(1.15) rotate(12deg);
+    opacity: 1;
+  }
+}
+
+@keyframes celebrate {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-115vh) translateX(var(--drift)) rotate(30deg) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 22px 13px;
+  }
+
+  .card {
+    padding: 28px 22px 21px;
+    border-radius: 28px;
+  }
+
+  .photo-frame {
+    width: 140px;
+    height: 140px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .buttons {
+    flex-wrap: wrap;
+  }
+
+  #yes {
+    padding: 12px 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
